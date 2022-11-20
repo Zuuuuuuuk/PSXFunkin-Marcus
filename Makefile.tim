@@ -1,0 +1,54 @@
+# Characters Path
+BFPATH = iso/characters/bf
+DADPATH = iso/characters/dad
+GFPATH = iso/characters/gf
+
+all: \
+	iso/save16.tim \
+	iso/menu/menu.arc \
+	iso/menu/loading.tim \
+	iso/font/font1.tim \
+	iso/stage/hud0.tim \
+	iso/stage/hud1.tim \
+	iso/stage/hud2.tim \
+	iso/stage/hud0weeb.tim \
+	iso/stage/hud2weeb.tim \
+	$(BFPATH)/normal/main.arc \
+	$(BFPATH)/dead.arc \
+	$(DADPATH)/normal/main.arc \
+	$(GFPATH)/normal/main.arc \
+	$(GFPATH)/normal/tut.arc \
+	$(GFPATH)/speaker.tim \
+	$(BFPATH)/weeb/main.arc \
+	$(GFPATH)/weeb/main.arc \
+	iso/week1/back.arc \
+
+iso/%.tim: iso/%.png
+	tools/funkintimpak/funkintimpak $@ $<
+
+iso/%.arc:
+	tools/funkinarcpak/funkinarcpak $@ $^
+
+# Menu
+iso/menu/menu.arc: iso/menu/back.tim iso/menu/ng.tim iso/menu/story.tim iso/menu/title.tim iso/menu/hud1.tim
+
+# BF
+$(BFPATH)/normal/main.arc: $(BFPATH)/normal/bf0.tim $(BFPATH)/normal/bf1.tim $(BFPATH)/normal/bf2.tim $(BFPATH)/normal/bf3.tim $(BFPATH)/normal/bf4.tim $(BFPATH)/normal/bf5.tim $(BFPATH)/normal/bf6.tim $(BFPATH)/dead0.tim $(BFPATH)/dead1.tim $(BFPATH)/dead2.tim
+
+$(BFPATH)/dead.arc: $(BFPATH)/dead3.tim $(BFPATH)/dead4.tim $(BFPATH)/dead5.tim
+
+# Dad
+$(DADPATH)/normal/main.arc: $(DADPATH)/normal/idle0.tim $(DADPATH)/normal/idle1.tim $(DADPATH)/normal/left.tim $(DADPATH)/normal/down.tim $(DADPATH)/normal/up.tim $(DADPATH)/normal/right.tim
+
+# GF
+$(GFPATH)/normal/main.arc: $(GFPATH)/normal/gf0.tim $(GFPATH)/normal/gf1.tim $(GFPATH)/normal/gf2.tim
+$(GFPATH)/normal/tut.arc: $(GFPATH)/normal/tut0.tim $(GFPATH)/normal/tut1.tim
+
+# Weeb BF
+$(BFPATH)/weeb/main.arc: $(BFPATH)/weeb/bf0.tim $(BFPATH)/weeb/bf1.tim
+
+# Weeb GF
+$(GFPATH)/weeb/main.arc: $(GFPATH)/weeb/gf0.tim $(GFPATH)/weeb/gf1.tim
+
+# Week 1
+iso/week1/back.arc: iso/week1/back0.tim iso/week1/back1.tim
